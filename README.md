@@ -56,6 +56,18 @@ KEYDIR=keyed KILLCOV=0.6 BG=46,232,31 python3 ../../scripts/reconstruct.py 24 74
 
 For clips on a white or black background use `key_white.py` instead of `key_green.py` and expect to tune it per character: parts of the character that share the background colour (eye whites on white, a black dress on black) cannot be told apart by any rule. Green screen avoids the whole problem.
 
+## Using it with an AI agent
+
+The repo ships an [AGENTS.md](AGENTS.md) (and an identical `CLAUDE.md`) that Codex, Claude Code and most coding agents read automatically when they work inside the folder. It tells the agent to run the intake first and show you the scorecard, to treat green screen as the expected input, to check every result on magenta before showing it, and to offer the optional steps (grid comparison, frame cut, stabilisation) instead of applying them silently.
+
+To use it, clone the repo and start your agent inside it, then say something like:
+
+```
+Here is a clip of my character: ~/Downloads/my_clip.mp4. Turn it into a sprite sheet following AGENTS.md.
+```
+
+If your agent works from a different folder, paste the contents of `AGENTS.md` into its instructions or point it at the file.
+
 ## Examples
 
 Each character: the original clip, the seven cell sizes side by side, and the 4.5 px result. Sprite sets at 4.5 and 6.0 px are in [examples/](examples/).
