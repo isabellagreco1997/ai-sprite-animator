@@ -1,0 +1,89 @@
+{
+ "name": "spiky_guy",
+ "loop": true,
+ "fps": 8,
+ "cell": {
+  "w": 37,
+  "h": 55
+ },
+ "gridPx": 6.0,
+ "sourceFramesKept": [
+  0,
+  3,
+  6,
+  9,
+  12,
+  15,
+  18,
+  21,
+  24,
+  27,
+  30,
+  33,
+  36,
+  39,
+  42
+ ],
+ "frames": [
+  {
+   "file": "frames/spiky_guy_00.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/spiky_guy_01.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/spiky_guy_02.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/spiky_guy_03.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/spiky_guy_04.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/spiky_guy_05.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/spiky_guy_06.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/spiky_guy_07.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/spiky_guy_08.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/spiky_guy_09.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/spiky_guy_10.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/spiky_guy_11.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/spiky_guy_12.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/spiky_guy_13.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/spiky_guy_14.png",
+   "durationMs": 125
+  }
+ ]
+}

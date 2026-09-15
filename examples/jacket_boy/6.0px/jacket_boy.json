@@ -1,0 +1,84 @@
+{
+ "name": "jacket_boy",
+ "loop": true,
+ "fps": 8,
+ "cell": {
+  "w": 32,
+  "h": 61
+ },
+ "gridPx": 6.0,
+ "sourceFramesKept": [
+  0,
+  3,
+  6,
+  9,
+  12,
+  15,
+  18,
+  21,
+  24,
+  27,
+  30,
+  33,
+  36,
+  39
+ ],
+ "frames": [
+  {
+   "file": "frames/jacket_boy_00.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/jacket_boy_01.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/jacket_boy_02.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/jacket_boy_03.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/jacket_boy_04.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/jacket_boy_05.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/jacket_boy_06.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/jacket_boy_07.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/jacket_boy_08.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/jacket_boy_09.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/jacket_boy_10.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/jacket_boy_11.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/jacket_boy_12.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/jacket_boy_13.png",
+   "durationMs": 125
+  }
+ ]
+}

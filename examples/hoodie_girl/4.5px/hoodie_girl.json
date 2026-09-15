@@ -1,0 +1,89 @@
+{
+ "name": "hoodie_girl",
+ "loop": true,
+ "fps": 8,
+ "cell": {
+  "w": 56,
+  "h": 93
+ },
+ "gridPx": 4.5,
+ "sourceFramesKept": [
+  0,
+  3,
+  6,
+  9,
+  12,
+  15,
+  18,
+  21,
+  24,
+  27,
+  30,
+  33,
+  36,
+  39,
+  42
+ ],
+ "frames": [
+  {
+   "file": "frames/hoodie_girl_00.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/hoodie_girl_01.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/hoodie_girl_02.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/hoodie_girl_03.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/hoodie_girl_04.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/hoodie_girl_05.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/hoodie_girl_06.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/hoodie_girl_07.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/hoodie_girl_08.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/hoodie_girl_09.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/hoodie_girl_10.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/hoodie_girl_11.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/hoodie_girl_12.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/hoodie_girl_13.png",
+   "durationMs": 125
+  },
+  {
+   "file": "frames/hoodie_girl_14.png",
+   "durationMs": 125
+  }
+ ]
+}
