@@ -30,6 +30,12 @@ Turn a short AI generated video of a pixel art character into a game ready sprit
 
    ![result](docs/img/goth_girl_walk_4.5px.gif)
 
+   **Feet anchored grid (default).** Left alone, the fixer picks a grid phase for each frame from where the edges happen to fall, so a smooth 4 px bob in the video turns into the whole sprite popping up and down by a cell and the feet never sit on the same row. `reconstruct.py` now shifts each source frame by a few pixels before the fixer sees it, so the feet baseline lands on the same grid row every time and the torso keeps its column phase. Nothing is copied between frames, every frame is still its own reconstruction. On the goth girl this took head row changes from 11 to 4 (the 4 are the real bob), feet row changes from 12 to 0, and cut the outline flicker by about a tenth and colour pops by a fifth.
+
+   ![feet anchor before and after](docs/img/step5_feet_anchor.gif)
+
+   It assumes the feet stay on the ground. For a jump, a hover or anything airborne run with `ANCHOR=none` and the fixer picks its own phase again.
+
 6. **Cut and package.** Keep one frame, drop two, play at 8 fps. You get `frames/`, a sheet at 1x and 4x, a timing JSON with the loop flag and the grid size, a loop GIF and the magenta check sheet.
 
    ![package](docs/img/step6_package.png)
@@ -53,6 +59,8 @@ python3 scripts/grid_compare.py work/my_char my_char         # optional: compare
 cd work/my_char
 KEYDIR=keyed KILLCOV=0.6 BG=46,232,31 python3 ../../scripts/reconstruct.py 24 74 4.5 4.5 0 0 0 out 1
 ```
+
+Add `ANCHOR=none` to that line for a jump or a hover, where the feet are meant to leave the ground.
 
 For clips on a white or black background use `key_white.py` instead of `key_green.py` and expect to tune it per character: parts of the character that share the background colour (eye whites on white, a black dress on black) cannot be told apart by any rule. Green screen avoids the whole problem.
 
