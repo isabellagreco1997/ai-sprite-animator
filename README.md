@@ -94,4 +94,4 @@ Each character: the original clip, the seven cell sizes side by side, and the 4.
 
 ## Credits
 
-Reconstruction by [pixel-art-fixer](https://github.com/Retro-Diffusion/pixel-art-fixer) (Retro Diffusion, MIT). Example clips generated with Grok. Built by Isabella Greco with Claude.
+Reconstruction by [pixel-art-fixer](https://github.com/Retro-Diffusion/pixel-art-fixer) (Retro Diffusion, MIT). Example clips generated with Grok.
