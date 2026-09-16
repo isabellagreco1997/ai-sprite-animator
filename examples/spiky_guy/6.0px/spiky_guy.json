@@ -3,10 +3,11 @@
  "loop": true,
  "fps": 8,
  "cell": {
-  "w": 37,
-  "h": 55
+  "w": 36,
+  "h": 54
  },
  "gridPx": 6.0,
+ "anchor": "feet",
  "sourceFramesKept": [
   0,
   3,

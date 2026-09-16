@@ -2,7 +2,7 @@
 Usage: KEYDIR=keyed KILLCOV=0.6 BG=r,g,b python3 reconstruct.py <A0> <A1> <cellX> <cellY> 0 0 0 <outdir> 1
 (positional 5..7 are legacy lock/keyframe/temporal-vote options, keep them 0 for a faithful build; last arg 1 = keep the fixer's own colours)
 env: KEYDIR (keyed frames dir), BG (background colour used by the speck kill), KILLCOV (min source coverage for near-background cells), PIXELFIXER (path to pixel-art-fixer/python), TMPDIR,
-     ANCHOR=feet|none (feet, the default, pins the grid to the feet baseline so the sprite does not bob by whole cells; none for jumps and hovers)."""
+     ANCHOR=feet|none (feet, the default, pins each frame's feet baseline to the cycle's median grid row when it is within ANCHOR_TOL=0.6 cells of it, bigger lifts snap to the nearest row; none = the fixer's own per frame phase)."""
 import numpy as np, sys, os, shutil, json, subprocess
 from PIL import Image
 from scipy import ndimage
@@ -21,7 +21,7 @@ def clean_palette(a,dist=32,min_share=0.002,outline_lum=40):
     if dark.any(): P=np.vstack([P[~dark],P[dark][lum[dark].argmin()][None]])
     return P
 pal=clean_palette(src[0]); print("palette",len(pal),flush=True)
-ANCHOR=os.environ.get("ANCHOR","feet")   # feet (default): shift each source frame so the feet baseline sits on a fixed grid row and the torso keeps its column phase. ANCHOR=none = the fixer picks its own phase per frame (use for jumps, hovers, anything where the feet leave the ground)
+ANCHOR=os.environ.get("ANCHOR","feet")   # feet (default): shift each source frame so the feet baseline sits on a fixed grid row and the torso keeps its column phase. ANCHOR=none = the fixer picks its own phase per frame
 def baseline(a):
     m=a[...,3]>128; rc=m.sum(axis=1); xs=np.where(m)[1]; need=max(3,int(0.02*(xs.max()-xs.min()+1))); ys=np.where(rc>=need)[0]; return int(ys.max())+1
 def torso_cx(a):
@@ -29,12 +29,14 @@ def torso_cx(a):
 def shifted(a,dy,dx):
     o=np.zeros_like(a); H_,W_=a.shape[:2]; ys=slice(max(0,dy),min(H_,H_+dy)); xs=slice(max(0,dx),min(W_,W_+dx)); o[ys,xs]=a[max(0,-dy):max(0,-dy)+(ys.stop-ys.start),max(0,-dx):max(0,-dx)+(xs.stop-xs.start)]; return o
 if ANCHOR=="feet":
-    b0=baseline(src[0]); kB=int(round(b0/SY)); ytarget=int(round(kB*SY)); cx0=torso_cx(src[0]); shifts=[]
+    cx0=torso_cx(src[0]); bases=[baseline(a) for a in src]; med=float(np.median(bases)); yref=int(round(round(med/SY)*SY)); TOL=float(os.environ.get("ANCHOR_TOL","0.6"))*SY; shifts=[]
     for j,a in enumerate(src):
-        dy=ytarget-baseline(a); dx=cx0-torso_cx(a); dx=int(round(((dx+SX/2)%SX)-SX/2))   # x: only the sub cell phase, whole cell drift is kept
-        if abs(dy)>2*SY: print(f"warning: frame {j} baseline moved {dy:+d} px, feet anchor assumes the feet stay on the ground",flush=True)
+        b=bases[j]
+        if abs(b-med)<=TOL: dy=yref-b   # y: within 0.6 cell of the cycle's median baseline = jitter, pin the feet to the median's lattice line
+        else: dy=int(round(round(b/SY)*SY))-b   # a real lift (heel off the ground, jump) = snap to the nearest lattice line, kept as whole rows
+        dx=cx0-torso_cx(a); dx=int(round(((dx+SX/2)%SX)-SX/2))   # x: only the sub cell phase of the head+torso, whole cell drift is kept
         src[j]=shifted(a,dy,dx); shifts.append((dy,dx))
-    print("anchor feet: baseline row",ytarget,"shifts dy/dx",shifts[::6],flush=True)
+    print("anchor feet: median baseline",med,"-> row",yref,"lifted frames",[j for j,b in enumerate(bases) if abs(b-med)>TOL],"shifts dy/dx",shifts[::6],flush=True)
 idxs=[]; RAWCOL=[]
 for j,a in enumerate(src):
     img=reconstruct(a,SX,SY,cols,rows) if ANCHOR=="none" else reconstruct(a,SX,SY,cols,rows,use_phase=False,use_snap=False)

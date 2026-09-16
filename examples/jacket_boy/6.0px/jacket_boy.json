@@ -4,9 +4,10 @@
  "fps": 8,
  "cell": {
   "w": 32,
-  "h": 61
+  "h": 59
  },
  "gridPx": 6.0,
+ "anchor": "feet",
  "sourceFramesKept": [
   0,
   3,
